@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Checker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #282c35;
+            color: #ffffff;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #61dafb;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #61dafb;
+            color: #282c35;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #61dafb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Time Checker</h1>
+
+    <label for="timezone">Select a time zone:</label>
+    <select id="timezone" onchange="updateTime()">
+        <option value="America/New_York">New York</option>
+        <option value="Europe/London">London</option>
+        <option value="Europe/Rome">Rome</option>
+        <option value="Asia/Tokyo">Tokyo</option>
+    </select>
+
+    <div id="result"></div>
+
+    <script>
+        function updateTime() {
+            const timezoneSelect = document.getElementById('timezone');
+            const selectedTimezone = timezoneSelect.value;
+
+            const options = { timeZone: selectedTimezone, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' };
+            const localTime = new Date().toLocaleTimeString('en-US', options);
+
+            document.getElementById('result').textContent = `Current time in ${selectedTimezone}: ${localTime}`;
+        }
+
+        // Initial time update
+        updateTime();
+    </script>
+</body>
+</html>
